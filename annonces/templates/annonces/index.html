@@ -1,0 +1,643 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IBUCE s.a.r.l – Topographie, BTP & Grands Œuvres</title>
+  <meta name="description" content="IBUCE s.a.r.l – Travaux de construction, topographie, aménagement, forage, transit, vente d'appareils topographiques et aide aux conflits fonciers en Côte d'Ivoire.">
+
+  <!-- Icônes Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Notre feuille de style principale -->
+  <link rel="stylesheet" href="{% static 'annonces/css/style.css' %}">
+</head>
+
+{% if show_admin %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        showPage('admin');
+    });
+</script>
+{% endif %}
+
+<body>
+
+<!-- ============================================================
+     BARRE DE NAVIGATION (sans bouton Admin)
+============================================================ -->
+<header id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src="{% static 'annonces/images/logoibuce.jpg' %}" alt="Logo IBUCE" style="height: 55px; width: auto;">
+      <div class="logo-text">
+        <span class="logo-name">IBUCE</span>
+        <span class="logo-tagline">International Buildings Construct Enterprise | s.a.r.l</span>
+      </div>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#accueil" onclick="showPage('accueil')">Accueil</a>
+      <a href="#projets" onclick="showPage('projets')">Réalisations</a>
+      <a href="#services" onclick="showPage('services')">Services</a>
+      <a href="#contact" onclick="showPage('contact')">Contact</a>
+      <!-- PAS DE BOUTON ADMIN -->
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     PAGE : ACCUEIL
+============================================================ -->
+<div id="page-accueil" class="page active">
+  <section class="hero-modern">
+    <div class="hero-overlay"></div>
+    <div class="hero-content-modern">
+      <div class="hero-badge">Expertise depuis 2016</div>
+      <h1>IBUCE s.a.r.l<br><span class="hero-highlight">Bâtisseurs d'infrastructures</span></h1>
+      <p>Topographie, construction, aménagement, forage, transit, vente d'appareils topographiques et aide aux conflits fonciers en Côte d'Ivoire.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('projets')">
+          <i class="fas fa-hard-hat"></i> Nos réalisations
+        </button>
+        <button class="btn-outline" onclick="showPage('contact')">
+          <i class="fas fa-phone-alt"></i> Demander un devis
+        </button>
+      </div>
+    </div>
+    <div class="hero-stats-modern">
+      <div class="stat-modern">
+        <div class="stat-number">120+</div>
+        <div class="stat-label">Projets livrés</div>
+      </div>
+      <div class="stat-modern">
+        <div class="stat-number">8 ans</div>
+        <div class="stat-label">d'expertise</div>
+      </div>
+      <div class="stat-modern">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Collaborateurs</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-modern">
+    <div class="container">
+      <div class="section-header-modern">
+        <span class="section-subtitle">Notre savoir-faire</span>
+        <h2>Des prestations complètes<br>pour vos projets d'envergure</h2>
+      </div>
+      <div class="services-grid-modern">
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+          <h3>Construction</h3>
+          <p>Plans, études, dossiers de permis de construire & réalisations clé en main.</p>
+          <div class="service-tag">Bâtiment & Travaux publics</div>
+        </div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Topographie</h3>
+          <p>Géométrie, cartographie, états des lieux, implantation d'ouvrages, lotissement.</p>
+          <div class="service-tag">Précision millimétrique</div>
+        </div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>Second Œuvre</h3>
+          <p>Peinture, staff, carrelage, froid-climatisation, installations sanitaires & électricité.</p>
+          <div class="service-tag">Finition haut de gamme</div>
+        </div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-water"></i></div>
+          <h3>Forage</h3>
+          <p>Études de forages hydro & villageois, château d'eau, adduction d'eau.</p>
+          <div class="service-tag">Eau potable & irrigation</div>
+        </div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-road"></i></div>
+          <h3>Aménagement</h3>
+          <p>Décapages, ouverture de voies, pose de poteaux électriques, lotissements.</p>
+          <div class="service-tag">Infrastructures durables</div>
+        </div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-gavel"></i></div>
+          <h3>Conflits fonciers</h3>
+          <p>Aide aux procédures de règlement de conflits fonciers (jusqu'en Conseil d'État).</p>
+          <div class="service-tag">Assistance juridique</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="realisations-preview">
+    <div class="container">
+      <div class="section-header-modern">
+        <span class="section-subtitle">Nos réalisations</span>
+        <h2>Des projets qui façonnent le territoire</h2>
+      </div>
+      <div class="realisations-grid" id="realisationsGrid"></div>
+      <div class="center-btn">
+        <button class="btn-outline" onclick="showPage('projets')">
+          <i class="fas fa-arrow-right"></i> Voir toutes nos réalisations
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <div class="section-header-modern">
+        <span class="section-subtitle">Équipements professionnels</span>
+        <h2>Vente d'appareils topographiques</h2>
+        <p>Matériel de précision pour vos chantiers</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <i class="fas fa-satellite-dish"></i>
+          <h3>GPS Différentiel</h3>
+          <p>Précision centimétrique</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-map"></i>
+          <h3>GPS Portatifs</h3>
+          <p>Navigation et relevés</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-level-up-alt"></i>
+          <h3>Niveaux optiques</h3>
+          <p>Nivellement de précision</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-laptop"></i>
+          <h3>Ordinateurs</h3>
+          <p>Solutions métiers</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-drone"></i>
+          <h3>Drones</h3>
+          <p>Cartographie aérienne</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-walkie-talkie"></i>
+          <h3>Talkies-walkies</h3>
+          <p>Communication chantier</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transit-section">
+    <div class="container">
+      <div class="transit-card">
+        <div class="transit-icon"><i class="fas fa-ship"></i></div>
+        <div class="transit-content">
+          <h3>Transit & Logistique</h3>
+          <p>Import & Export de grandes marchandises. IBUCE s.a.r.l vous accompagne dans vos opérations douanières et logistiques internationales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Un projet de construction ou d'aménagement ?</h2>
+        <p>Étude de faisabilité gratuite et devis sous 48h</p>
+        <button class="btn-primary-large" onclick="showPage('contact')">
+          <i class="fab fa-whatsapp"></i> Contactez notre équipe
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE : PROJETS
+============================================================ -->
+<div id="page-projets" class="page">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Nos réalisations</h1>
+      <p>Découvrez l'étendue de notre savoir-faire à travers nos projets emblématiques</p>
+    </div>
+  </section>
+  <section class="realisations-full">
+    <div class="container">
+      <div class="realisations-grid-full" id="realisationsGridFull"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE : DÉTAIL PROJET
+============================================================ -->
+<div id="page-detail" class="page">
+  <section class="detail-hero">
+    <div class="container">
+      <button class="btn-retour-modern" onclick="retourProjets()">
+        <i class="fas fa-arrow-left"></i> Retour aux réalisations
+      </button>
+      <div id="detailContent"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE : SERVICES
+============================================================ -->
+<div id="page-services" class="page">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Nos services</h1>
+      <p>Des prestations complètes de la topographie à la livraison des clés</p>
+    </div>
+  </section>
+  <section class="services-detailed">
+    <div class="container">
+      <div class="services-detailed-grid">
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-drafting-compass"></i></div>
+          <h3>Travaux de Construction</h3>
+          <p>Plans, études, dossiers de permis de construire & réalisations clé en main.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Plans architecturaux</li>
+            <li><i class="fas fa-check-circle"></i> Études techniques</li>
+            <li><i class="fas fa-check-circle"></i> Dossiers de permis de construire</li>
+            <li><i class="fas fa-check-circle"></i> Réalisations complètes</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Travaux Topographiques</h3>
+          <p>Géométrie, cartographie, états des lieux, implantation d'ouvrages, lotissement et ventes de terrains nus.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Relevés de précision</li>
+            <li><i class="fas fa-check-circle"></i> Bornage et implantation</li>
+            <li><i class="fas fa-check-circle"></i> Lotissement</li>
+            <li><i class="fas fa-check-circle"></i> Vente de terrains nus</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>Travaux de Second Œuvre</h3>
+          <p>Peinture, staff, carrelage, froid-climatisation, installations sanitaires & électricité.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Peinture décorative</li>
+            <li><i class="fas fa-check-circle"></i> Staff & plâtre</li>
+            <li><i class="fas fa-check-circle"></i> Carrelage & faïence</li>
+            <li><i class="fas fa-check-circle"></i> Climatisation & froid</li>
+            <li><i class="fas fa-check-circle"></i> Électricité & plomberie</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-water"></i></div>
+          <h3>Études de Forages</h3>
+          <p>Forages hydro & villageois, château d'eau, adduction d'eau potable.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Études hydrogéologiques</li>
+            <li><i class="fas fa-check-circle"></i> Forages villageois</li>
+            <li><i class="fas fa-check-circle"></i> Château d'eau</li>
+            <li><i class="fas fa-check-circle"></i> Adduction d'eau</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-road"></i></div>
+          <h3>Travaux d'Aménagement</h3>
+          <p>Décapages, ouverture de voies, pose de poteaux électriques et applications de lotissements.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Décapage & terrassement</li>
+            <li><i class="fas fa-check-circle"></i> Ouverture de voies</li>
+            <li><i class="fas fa-check-circle"></i> Électrification rurale</li>
+            <li><i class="fas fa-check-circle"></i> Aménagement de lotissements</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-file-signature"></i></div>
+          <h3>Aide aux Procédures</h3>
+          <p>Obtention d'approbation de lotissement, levé de Z.A.D et règlement de conflits fonciers (jusqu'en Conseil d'État).</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Approbation de lotissement</li>
+            <li><i class="fas fa-check-circle"></i> Levé de Z.A.D</li>
+            <li><i class="fas fa-check-circle"></i> Conflits fonciers</li>
+            <li><i class="fas fa-check-circle"></i> Conseil d'État</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-detailed">
+    <div class="container">
+      <div class="section-header-modern">
+        <span class="section-subtitle">Matériel professionnel</span>
+        <h2>Vente d'appareils topographiques</h2>
+      </div>
+      <div class="products-detailed-grid">
+        <div class="product-detailed-card">
+          <i class="fas fa-satellite-dish"></i>
+          <h3>GPS Différentiel</h3>
+          <p>Précision centimétrique</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-map"></i>
+          <h3>GPS Portatifs</h3>
+          <p>Solutions mobiles</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-level-up-alt"></i>
+          <h3>Niveaux optiques</h3>
+          <p>Nivellement de précision</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-laptop"></i>
+          <h3>Ordinateurs</h3>
+          <p>Solutions métiers</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-drone"></i>
+          <h3>Drones</h3>
+          <p>Cartographie aérienne</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-walkie-talkie"></i>
+          <h3>Talkies-walkies</h3>
+          <p>Communication chantier</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transit-detailed">
+    <div class="container">
+      <div class="transit-detailed-card">
+        <div class="transit-icon-large"><i class="fas fa-ship"></i></div>
+        <div class="transit-content-detailed">
+          <h3>Transit & Logistique internationale</h3>
+          <p>IBUCE s.a.r.l assure l'import et l'export de grandes marchandises. Nous vous accompagnons dans toutes vos opérations douanières et logistiques.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Import/Export de marchandises</li>
+            <li><i class="fas fa-check-circle"></i> Dédouanement</li>
+            <li><i class="fas fa-check-circle"></i> Logistique internationale</li>
+            <li><i class="fas fa-check-circle"></i> Transport de matériel BTP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE : CONTACT
+============================================================ -->
+<div id="page-contact" class="page">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Contactez IBUCE s.a.r.l</h1>
+      <p>Parlons de votre projet, nous vous répondons sous 24h</p>
+    </div>
+  </section>
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid-modern">
+        <div class="contact-info-modern">
+          <h3><i class="fas fa-building"></i> IBUCE s.a.r.l</h3>
+          <p>International Buildings Construct Enterprise</p>
+          
+          <h3><i class="fas fa-map-marker-alt"></i> Adresse</h3>
+          <p>Abidjan, Côte d'Ivoire</p>
+          
+          <h3><i class="fas fa-phone-alt"></i> Téléphones</h3>
+          <p><i class="fas fa-phone"></i> +225 07 57 09 07 14</p>
+          <p><i class="fas fa-phone"></i> +225 05 74 00 20 19</p>
+          
+          <h3><i class="fas fa-envelope"></i> Email</h3>
+          <p>ibuce.ci@gmail.com</p>
+          
+          <h3><i class="fab fa-whatsapp"></i> WhatsApp</h3>
+          <a href="https://wa.me/2250757090714" target="_blank" class="whatsapp-link">
+            <i class="fab fa-whatsapp"></i> +225 07 57 09 07 14
+          </a>
+          <a href="https://wa.me/2250574002019" target="_blank" class="whatsapp-link" style="margin-top: 10px;">
+            <i class="fab fa-whatsapp"></i> +225 05 74 00 20 19
+          </a>
+          
+          <h3><i class="fas fa-clock"></i> Horaires</h3>
+          <p>Lundi - Vendredi : 8h00 - 18h00<br>Samedi : 9h00 - 13h00</p>
+        </div>
+        <div class="contact-form-modern">
+          <form id="contactForm" onsubmit="envoyerContact(event)">
+            <div class="form-row-modern">
+              <div class="form-group-modern">
+                <label>Nom complet</label>
+                <input type="text" id="cNom" placeholder="Votre nom" required />
+              </div>
+              <div class="form-group-modern">
+                <label>Téléphone</label>
+                <input type="tel" id="cTel" placeholder="+225 XX XX XX XX" required />
+              </div>
+            </div>
+            <div class="form-group-modern">
+              <label>Email</label>
+              <input type="email" id="cEmail" placeholder="votre@email.com" />
+            </div>
+            <div class="form-group-modern">
+              <label>Message</label>
+              <textarea id="cMessage" rows="5" placeholder="Décrivez votre projet..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary-full">
+              <i class="fas fa-paper-plane"></i> Envoyer la demande
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE : ADMIN (accessible uniquement via URL secrète)
+============================================================ -->
+<div id="page-admin" class="page">
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-cog"></i> Administration</h1>
+      <p>Gérez vos projets et réalisations IBUCE</p>
+    </div>
+  </section>
+  <div class="container">
+    <div class="admin-card-modern">
+      <h3><i class="fas fa-plus-circle"></i> Ajouter une réalisation</h3>
+      <form id="adminForm" onsubmit="ajouterProjet(event)" enctype="multipart/form-data">
+        <div class="form-row-modern">
+          <div class="form-group-modern">
+            <label>Titre du projet</label>
+            <input type="text" id="aTitle" placeholder="Ex: Projet Bingerville" required />
+          </div>
+          <div class="form-group-modern">
+            <label>Lieu</label>
+            <input type="text" id="aLieu" placeholder="Ex: Bingerville" required />
+          </div>
+        </div>
+        <div class="form-row-modern">
+          <div class="form-group-modern">
+            <label>Année</label>
+            <input type="text" id="aAnnee" placeholder="Ex: 2024" required />
+          </div>
+          <div class="form-group-modern">
+            <label>Catégorie</label>
+            <select id="aCategorie">
+              <option value="construction">Construction</option>
+              <option value="topographie">Topographie</option>
+              <option value="amenagement">Aménagement</option>
+              <option value="forage">Forage</option>
+              <option value="second-oeuvre">Second Œuvre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group-modern">
+          <label>Description</label>
+          <textarea id="aDesc" rows="3" placeholder="Description détaillée du projet..." required></textarea>
+        </div>
+        <div class="form-group-modern">
+          <label>Image principale</label>
+          <input type="file" id="aImgMain" accept="image/*" required />
+        </div>
+        <div class="form-group-modern">
+          <label>Images supplémentaires</label>
+          <input type="file" id="aImgsSecond" accept="image/*" multiple />
+        </div>
+        <button type="submit" class="btn-primary-full">
+          <i class="fas fa-save"></i> Publier la réalisation
+        </button>
+      </form>
+    </div>
+
+    <div class="admin-card-modern">
+      <h3><i class="fas fa-list"></i> Réalisations existantes (<span id="nbProjets">0</span>)</h3>
+      <div id="adminList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL : GALERIE
+============================================================ -->
+<div id="modalGalerie" class="modal hidden">
+  <div class="modal-overlay" onclick="fermerGalerie()"></div>
+  <div class="modal-box-modern">
+    <button class="modal-close" onclick="fermerGalerie()"><i class="fas fa-times"></i></button>
+    <img id="galerieImg" src="" alt="Image" />
+    <div class="galerie-nav-modern">
+      <button onclick="galeriePrev()"><i class="fas fa-chevron-left"></i></button>
+      <span id="galerieCount">1 / 1</span>
+      <button onclick="galerieNext()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL : ÉDITION PROJET
+============================================================ -->
+<div id="modalEditProjet" class="modal hidden">
+  <div class="modal-overlay" onclick="fermerEditProjet()"></div>
+  <div class="modal-box-modern edit-box">
+    <button class="modal-close" onclick="fermerEditProjet()"><i class="fas fa-times"></i></button>
+    <h3>Modifier la réalisation</h3>
+    <form id="editProjetForm" onsubmit="soumettreEditProjet(event)" enctype="multipart/form-data">
+      <input type="hidden" id="editId" />
+      <div class="form-group-modern">
+        <label>Titre</label>
+        <input type="text" id="editTitre" required />
+      </div>
+      <div class="form-group-modern">
+        <label>Lieu</label>
+        <input type="text" id="editLieu" required />
+      </div>
+      <div class="form-group-modern">
+        <label>Année</label>
+        <input type="text" id="editAnnee" required />
+      </div>
+      <div class="form-group-modern">
+        <label>Catégorie</label>
+        <select id="editCategorie">
+          <option value="construction">Construction</option>
+          <option value="topographie">Topographie</option>
+          <option value="amenagement">Aménagement</option>
+          <option value="forage">Forage</option>
+          <option value="second-oeuvre">Second Œuvre</option>
+        </select>
+      </div>
+      <div class="form-group-modern">
+        <label>Description</label>
+        <textarea id="editDescription" rows="3" required></textarea>
+      </div>
+      <div class="form-group-modern">
+        <label>Nouvelle image principale (optionnel)</label>
+        <input type="file" id="editImgPrincipale" accept="image/*" />
+      </div>
+      <button type="submit" class="btn-primary-full">Enregistrer</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer-modern">
+  <div class="container">
+    <div class="footer-grid-modern">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="{% static 'annonces/images/logoibuce.jpg' %}" alt="Logo" style="height: 50px;">
+          <span>IBUCE s.a.r.l</span>
+        </div>
+        <p>International Buildings Construct Enterprise - Topographie, BTP, Forage, Transit et Grands Œuvres en Côte d'Ivoire.</p>
+        <div class="social-links-modern">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/2250757090714"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('accueil')">Accueil</a></li>
+          <li><a href="#" onclick="showPage('projets')">Réalisations</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Nos Services</h4>
+        <ul>
+          <li>Construction</li>
+          <li>Topographie</li>
+          <li>Second Œuvre</li>
+          <li>Forage</li>
+          <li>Aménagement</li>
+          <li>Transit</li>
+          <li>Vente de matériel</li>
+          <li>Conflits fonciers</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-phone"></i> +225 07 57 09 07 14</p>
+        <p><i class="fas fa-phone"></i> +225 05 74 00 20 19</p>
+        <p><i class="fas fa-envelope"></i> ibuce.ci@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Abidjan, Côte d'Ivoire</p>
+      </div>
+    </div>
+    <div class="footer-bottom-modern">
+      <p>© 2026 IBUCE s.a.r.l – Tous droits réservés | Travaux de construction, topographie, forage, transit, vente d'appareils topographiques</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="{% static 'annonces/js/script.js' %}"></script>
+</body>
+</html>

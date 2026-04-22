@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Administration – IBUCE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A2540 0%, #0055A4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .login-logo h2 {
+            color: #0A2540;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .login-logo p {
+            color: #0055A4;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .login-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-title h3 {
+            color: #0A2540;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .login-title p {
+            color: #64748B;
+            font-size: 0.85rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0A2540;
+            font-size: 0.85rem;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: #0055A4;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0055A4;
+            box-shadow: 0 0 0 3px rgba(0, 85, 164, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #0055A4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover {
+            background: #004080;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background: #FEE2E2;
+            color: #DC2626;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .back-link a {
+            color: #0055A4;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #0A2540;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <h2><i class="fas fa-hard-hat"></i> IBUCE</h2>
+            <p>International Buildings Construct Enterprise</p>
+        </div>
+        <div class="login-title">
+            <h3><i class="fas fa-lock"></i> Administration</h3>
+            <p>Connectez-vous pour gérer vos projets</p>
+        </div>
+        
+        {% if error %}
+        <div class="error-message">
+            <i class="fas fa-exclamation-triangle"></i> Identifiants incorrects
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Nom d'utilisateur</label>
+                <input type="text" name="username" placeholder="Entrez votre nom d'utilisateur" required autofocus>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-key"></i> Mot de passe</label>
+                <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+            </div>
+            <button type="submit" class="btn-login">
+                <i class="fas fa-sign-in-alt"></i> Se connecter
+            </button>
+        </form>
+        <div class="back-link">
+            <a href="/"><i class="fas fa-arrow-left"></i> Retour au site</a>
+        </div>
+    </div>
+</body>
+</html>
