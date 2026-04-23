@@ -24,14 +24,14 @@ class Projet(models.Model):
     annee = models.CharField(max_length=10)
     categorie = models.CharField(max_length=30, choices=CATEGORIE_CHOICES, default='construction')
     description = models.TextField()
-    image_principale = models.ImageField(upload_to='projets/', null=True, blank=True)
+    image_principale = models.ImageField(upload_to='projets/images/', null=True, blank=True)
     est_publie = models.BooleanField(default=True)
     date_creation = models.DateTimeField(auto_now_add=True)
     
     def save(self, *args, **kwargs):
         if not self.id_projet:
-            dernier = Projet.objects.all().order_by('-id_projet').first()
-            if dernier and dernier.id_projet.startswith('P'):
+            dernier = Projet.objects.filter(id_projet__startswith='P').order_by('-id_projet').first()
+            if dernier and dernier.id_projet:
                 try:
                     num = int(dernier.id_projet[1:]) + 1
                     self.id_projet = f"P{num:03d}"
@@ -49,6 +49,9 @@ class Image(models.Model):
     projet = models.ForeignKey(Projet, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='projets/images/')
     ordre = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['ordre']
     
     def __str__(self):
         return f"Image pour {self.projet.titre}"
