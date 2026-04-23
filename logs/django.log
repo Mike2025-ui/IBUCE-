@@ -1027,3 +1027,30 @@ INFO 2026-04-22 11:24:20,923 log "GET / HTTP/1.1" 200 26361
 INFO 2026-04-22 11:24:27,281 log "GET /IbucClaude-admin-access/ HTTP/1.1" 200 5392
 INFO 2026-04-22 11:25:15,390 log "GET / HTTP/1.1" 200 26361
 INFO 2026-04-22 11:25:21,209 log "GET /IbucClaude-admin-access/ HTTP/1.1" 200 5392
+INFO 2026-04-22 18:09:19,066 autoreload Watching for file changes with StatReloader
+INFO 2026-04-22 18:09:54,542 log "GET / HTTP/1.1" 200 26361
+INFO 2026-04-22 18:09:54,717 log "GET /static/annonces/css/style.css HTTP/1.1" 304 0
+INFO 2026-04-22 18:09:54,718 log "GET /static/annonces/js/script.js HTTP/1.1" 304 0
+INFO 2026-04-23 16:45:35,440 autoreload Watching for file changes with StatReloader
+INFO 2026-04-23 16:50:14,953 autoreload C:\Users\TOSHIBA\Desktop\Ibuce\annonces\models.py changed, reloading.
+INFO 2026-04-23 16:50:17,556 autoreload Watching for file changes with StatReloader
+INFO 2026-04-23 16:54:18,221 autoreload C:\Users\TOSHIBA\Desktop\Ibuce\annonces\admin.py changed, reloading.
+INFO 2026-04-23 16:54:19,882 autoreload Watching for file changes with StatReloader
+INFO 2026-04-23 16:55:53,866 autoreload C:\Users\TOSHIBA\Desktop\Ibuce\annonces\views.py changed, reloading.
+INFO 2026-04-23 16:55:55,366 autoreload Watching for file changes with StatReloader
+INFO 2026-04-23 16:56:16,115 autoreload C:\Users\TOSHIBA\Desktop\Ibuce\annonces\urls.py changed, reloading.
+INFO 2026-04-23 16:56:17,449 autoreload Watching for file changes with StatReloader
+INFO 2026-04-23 16:56:38,407 log "GET / HTTP/1.1" 200 28827
+INFO 2026-04-23 16:56:38,841 log "GET /static/annonces/css/style.css HTTP/1.1" 200 3211
+INFO 2026-04-23 16:56:38,927 log "GET /static/annonces/js/script.js HTTP/1.1" 200 18824
+WARNING 2026-04-23 16:56:39,815 log Not Found: /favicon.ico
+WARNING 2026-04-23 16:56:39,816 log "GET /favicon.ico HTTP/1.1" 404 5595
+INFO 2026-04-23 16:56:47,244 log "GET / HTTP/1.1" 200 28827
+INFO 2026-04-23 16:56:48,023 log "GET / HTTP/1.1" 200 28827
+INFO 2026-04-23 16:57:13,054 log "GET / HTTP/1.1" 200 28827
+INFO 2026-04-23 16:57:13,108 log "GET /static/annonces/js/script.js HTTP/1.1" 304 0
+INFO 2026-04-23 16:59:37,533 autoreload Watching for file changes with StatReloader
+INFO 2026-04-23 16:59:40,606 log "GET / HTTP/1.1" 200 28827
+INFO 2026-04-23 16:59:40,802 log "GET /static/annonces/css/style.css HTTP/1.1" 304 0
+INFO 2026-04-23 16:59:40,812 log "GET /static/annonces/js/script.js HTTP/1.1" 304 0
+INFO 2026-04-23 17:06:23,275 autoreload C:\Users\TOSHIBA\Desktop\Ibuce\App\settings.py changed, reloading.

@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .models import Annonce, Image, Document, Commentaire, DemandeContact
+from .models import Projet, Image, Commentaire, DemandeContact
 import json
 from django.conf import settings
 import os
@@ -14,13 +14,11 @@ import os
 # ============================================================
 
 def index(request):
-    """Page d'accueil du site IBUCE"""
     return render(request, 'annonces/index.html')
 
 
 @csrf_exempt
 def page_login(request):
-    """Page de connexion administration - accessible via lien secret"""
     if request.user.is_authenticated and request.user.is_staff:
         return redirect('admin_panel')
     
@@ -40,202 +38,221 @@ def page_login(request):
 
 @login_required
 def admin_panel(request):
-    """Page admin - accessible uniquement après connexion"""
     if not request.user.is_staff:
         return redirect('page_login')
     return render(request, 'annonces/index.html', {'show_admin': True})
 
 
 def force_logout(request):
-    """Déconnexion forcée"""
     logout(request)
     return redirect('/')
 
 
 # ============================================================
-# API POUR LES ANNONCES/PROJETS
+# API POUR LES PROJETS
 # ============================================================
 
-def api_annonces(request):
-    """API qui retourne TOUTES les annonces au format JSON"""
-    annonces = Annonce.objects.filter(est_publie=True)
+def api_projets(request):
+    """API qui retourne TOUS les projets au format JSON"""
+    projets = Projet.objects.filter(est_publie=True)
     
     data = []
-    for a in annonces:
-        images_urls = [img.image.url if img.image else '' for img in a.images.all()]
-        documents_list = [{'nom': doc.nom, 'url': doc.fichier.url if doc.fichier else ''} for doc in a.documents.all()]
+    for p in projets:
+        images_urls = [img.image.url if img.image else '' for img in p.images.all()]
         commentaires_list = [{
             'auteur': c.auteur,
             'date': c.date.strftime('%d %b. %Y'),
             'note': c.note,
             'texte': c.texte
-        } for c in a.commentaires.all()]
+        } for c in p.commentaires.all()]
         
         data.append({
-            'id': a.id_annonce,
-            'titre': a.titre,
-            'type': a.type,
-            'ville': a.ville,
-            'quartier': a.quartier,
-            'prix': a.prix,
-            'surface': a.surface or '',
-            'description': a.description,
-            'imgPrincipale': a.img_principale.url if a.img_principale else '',
+            'id': p.id_projet,
+            'titre': p.titre,
+            'lieu': p.lieu,
+            'annee': p.annee,
+            'categorie': p.categorie,
+            'description': p.description,
+            'imgPrincipale': p.image_principale.url if p.image_principale else '',
             'images': images_urls,
-            'documents': documents_list,
-            'note': float(a.note),
+            'note': 0,
             'commentaires': commentaires_list
         })
     
     return JsonResponse(data, safe=False)
 
 
-def api_annonce_detail(request, id_annonce):
-    """API qui retourne UNE SEULE annonce (par son ID)"""
+def api_projet_detail(request, id_projet):
+    """API qui retourne UN SEUL projet (par son ID)"""
     try:
-        annonce = Annonce.objects.get(id_annonce=id_annonce, est_publie=True)
-    except Annonce.DoesNotExist:
-        return JsonResponse({'error': 'Annonce non trouvée'}, status=404)
+        projet = Projet.objects.get(id_projet=id_projet, est_publie=True)
+    except Projet.DoesNotExist:
+        return JsonResponse({'error': 'Projet non trouvé'}, status=404)
     
-    images_urls = [img.image.url if img.image else '' for img in annonce.images.all()]
-    documents_list = [{'nom': doc.nom, 'url': doc.fichier.url if doc.fichier else ''} for doc in annonce.documents.all()]
+    images_urls = [img.image.url if img.image else '' for img in projet.images.all()]
     commentaires_list = [{
         'auteur': c.auteur,
         'date': c.date.strftime('%d %b. %Y'),
         'note': c.note,
         'texte': c.texte
-    } for c in annonce.commentaires.all()]
+    } for c in projet.commentaires.all()]
     
     data = {
-        'id': annonce.id_annonce,
-        'titre': annonce.titre,
-        'type': annonce.type,
-        'ville': annonce.ville,
-        'quartier': annonce.quartier,
-        'prix': annonce.prix,
-        'surface': annonce.surface or '',
-        'description': annonce.description,
-        'imgPrincipale': annonce.img_principale.url if annonce.img_principale else '',
+        'id': projet.id_projet,
+        'titre': projet.titre,
+        'lieu': projet.lieu,
+        'annee': projet.annee,
+        'categorie': projet.categorie,
+        'description': projet.description,
+        'imgPrincipale': projet.image_principale.url if projet.image_principale else '',
         'images': images_urls,
-        'documents': documents_list,
-        'note': float(annonce.note),
+        'note': 0,
         'commentaires': commentaires_list
     }
-    
     return JsonResponse(data, safe=False)
 
 
 @require_http_methods(["POST"])
-def creer_annonce(request):
-    """Crée une nouvelle annonce avec upload de fichiers"""
+def creer_projet(request):
+    """Crée un nouveau projet avec upload de fichiers"""
     try:
         titre = request.POST.get('titre')
-        type_bien = request.POST.get('type')
-        ville = request.POST.get('ville')
-        quartier = request.POST.get('quartier')
-        prix = request.POST.get('prix')
-        surface = request.POST.get('surface', '')
+        lieu = request.POST.get('lieu')
+        annee = request.POST.get('annee')
+        categorie = request.POST.get('categorie')
         description = request.POST.get('description')
         
-        if not all([titre, type_bien, ville, quartier, prix, description]):
+        if not all([titre, lieu, annee, description]):
             return JsonResponse({'error': 'Tous les champs obligatoires doivent être remplis'}, status=400)
         
-        annonce = Annonce(
+        projet = Projet(
             titre=titre,
-            type=type_bien,
-            ville=ville,
-            quartier=quartier,
-            prix=prix,
-            surface=surface,
+            lieu=lieu,
+            annee=annee,
+            categorie=categorie,
             description=description,
             est_publie=True
         )
         
-        if request.FILES.get('img_principale'):
-            annonce.img_principale = request.FILES['img_principale']
+        if request.FILES.get('image_principale'):
+            projet.image_principale = request.FILES['image_principale']
         
-        annonce.sauvegarder_avec_id()
+        projet.save()
+        
+        # Générer l'ID après sauvegarde
+        if not projet.id_projet:
+            dernier = Projet.objects.all().order_by('-id_projet').first()
+            if dernier and dernier.id_projet.startswith('P'):
+                try:
+                    num = int(dernier.id_projet[1:]) + 1
+                    projet.id_projet = f"P{num:03d}"
+                except:
+                    projet.id_projet = "P001"
+            else:
+                projet.id_projet = "P001"
+            projet.save()
         
         for img_file in request.FILES.getlist('images'):
-            Image.objects.create(annonce=annonce, image=img_file, ordre=0)
+            Image.objects.create(projet=projet, image=img_file, ordre=0)
         
-        for doc_file in request.FILES.getlist('documents'):
-            Document.objects.create(annonce=annonce, nom=doc_file.name, fichier=doc_file)
-        
-        return JsonResponse({'success': True, 'id': annonce.id_annonce})
-        
+        return JsonResponse({'success': True, 'id': projet.id_projet})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
 
 
 @require_http_methods(["DELETE"])
-def supprimer_annonce(request, id_annonce):
-    """Supprime une annonce"""
+def supprimer_projet(request, id_projet):
+    """Supprime un projet"""
     try:
-        annonce = Annonce.objects.get(id_annonce=id_annonce)
-        if annonce.img_principale:
+        projet = Projet.objects.get(id_projet=id_projet)
+        if projet.image_principale:
             try:
-                os.remove(os.path.join(settings.MEDIA_ROOT, str(annonce.img_principale)))
+                os.remove(os.path.join(settings.MEDIA_ROOT, str(projet.image_principale)))
             except:
                 pass
-        annonce.delete()
+        projet.delete()
         return JsonResponse({'success': True})
-    except Annonce.DoesNotExist:
-        return JsonResponse({'error': 'Annonce non trouvée'}, status=404)
+    except Projet.DoesNotExist:
+        return JsonResponse({'error': 'Projet non trouvé'}, status=404)
 
 
 @require_http_methods(["POST"])
-def modifier_annonce(request, id_annonce):
-    """Modifie une annonce (avec support upload image)"""
+def modifier_projet(request, id_projet):
+    """Modifie un projet (avec support upload image)"""
     try:
-        annonce = Annonce.objects.get(id_annonce=id_annonce)
+        projet = Projet.objects.get(id_projet=id_projet)
         
-        annonce.titre = request.POST.get('titre', annonce.titre)
-        annonce.type = request.POST.get('type', annonce.type)
-        annonce.ville = request.POST.get('ville', annonce.ville)
-        annonce.quartier = request.POST.get('quartier', annonce.quartier)
-        annonce.prix = request.POST.get('prix', annonce.prix)
-        annonce.surface = request.POST.get('surface', annonce.surface)
-        annonce.description = request.POST.get('description', annonce.description)
+        projet.titre = request.POST.get('titre', projet.titre)
+        projet.lieu = request.POST.get('lieu', projet.lieu)
+        projet.annee = request.POST.get('annee', projet.annee)
+        projet.categorie = request.POST.get('categorie', projet.categorie)
+        projet.description = request.POST.get('description', projet.description)
         
-        if request.FILES.get('img_principale'):
-            if annonce.img_principale:
+        if request.FILES.get('image_principale'):
+            if projet.image_principale:
                 try:
-                    os.remove(os.path.join(settings.MEDIA_ROOT, str(annonce.img_principale)))
+                    os.remove(os.path.join(settings.MEDIA_ROOT, str(projet.image_principale)))
                 except:
                     pass
-            annonce.img_principale = request.FILES['img_principale']
+            projet.image_principale = request.FILES['image_principale']
         
-        annonce.save()
-        
+        projet.save()
         return JsonResponse({'success': True})
-    except Annonce.DoesNotExist:
-        return JsonResponse({'error': 'Annonce non trouvée'}, status=404)
+    except Projet.DoesNotExist:
+        return JsonResponse({'error': 'Projet non trouvé'}, status=404)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
 
 
 @require_http_methods(["POST"])
-def ajouter_commentaire(request, id_annonce):
-    """Ajoute un commentaire à une annonce"""
+def ajouter_commentaire(request, id_projet):
+    """Ajoute un commentaire à un projet"""
     try:
-        annonce = Annonce.objects.get(id_annonce=id_annonce)
+        projet = Projet.objects.get(id_projet=id_projet)
         data = json.loads(request.body)
         
         Commentaire.objects.create(
-            annonce=annonce,
+            projet=projet,
             auteur=data['auteur'],
             note=data['note'],
             texte=data['texte']
         )
         
-        commentaires = annonce.commentaires.all()
-        moyenne = sum(c.note for c in commentaires) / commentaires.count()
-        annonce.note = round(moyenne, 1)
-        annonce.save()
+        return JsonResponse({'success': True})
+    except Projet.DoesNotExist:
+        return JsonResponse({'error': 'Projet non trouvé'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+
+@require_http_methods(["POST"])
+def contacter_interesse(request):
+    """Formulaire de contact"""
+    try:
+        data = json.loads(request.body)
+        projet_id = data.get('projet_id')
+        prenom = data.get('prenom')
+        nom = data.get('nom')
+        telephone = data.get('telephone')
+        message = data.get('message', '')
+        
+        if not all([prenom, nom, telephone]):
+            return JsonResponse({'error': 'Tous les champs sont requis'}, status=400)
+        
+        projet = None
+        if projet_id:
+            try:
+                projet = Projet.objects.get(id_projet=projet_id)
+            except Projet.DoesNotExist:
+                pass
+        
+        DemandeContact.objects.create(
+            projet=projet,
+            nom=f"{prenom} {nom}",
+            telephone=telephone,
+            message=message
+        )
         
         return JsonResponse({'success': True})
-    except Annonce.DoesNotExist:
-        return JsonResponse({'error': 'Annonce non trouvée'}, status=404)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)

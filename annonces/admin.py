@@ -1,65 +1,41 @@
 from django.contrib import admin
-from .models import Annonce, Image, Document, Commentaire, DemandeContact
+from .models import Projet, Image, Commentaire, DemandeContact
 
-class ImageInline(admin.TabularInline):
-    model = Image
-    extra = 3
-
-class DocumentInline(admin.TabularInline):
-    model = Document
-    extra = 2
-
-@admin.register(Annonce)
-class AnnonceAdmin(admin.ModelAdmin):
-    list_display = ['id_annonce', 'titre', 'type', 'ville', 'prix', 'est_publie']
-    list_filter = ['type', 'est_publie']
-    search_fields = ['titre', 'ville']
-    inlines = [ImageInline, DocumentInline]
-    
-    # Champs à afficher dans le formulaire d'ajout/modification
+@admin.register(Projet)
+class ProjetAdmin(admin.ModelAdmin):
+    list_display = ['id_projet', 'titre', 'lieu', 'annee', 'categorie', 'est_publie', 'date_creation']
+    list_filter = ['categorie', 'est_publie', 'annee']
+    search_fields = ['titre', 'lieu', 'id_projet', 'description']
+    readonly_fields = ['id_projet', 'date_creation']
     fieldsets = (
-        ('Informations de base', {
-            'fields': ('id_annonce', 'titre', 'type', 'est_publie')
+        ('Identification', {
+            'fields': ('id_projet', 'titre', 'categorie')
         }),
         ('Localisation', {
-            'fields': ('ville', 'quartier')
+            'fields': ('lieu',)
         }),
-        ('Caractéristiques', {
-            'fields': ('prix', 'surface', 'description')
+        ('Informations', {
+            'fields': ('annee', 'description', 'image_principale')
         }),
-        ('Image principale', {
-            'fields': ('img_principale',)
-        }),
-        ('Note', {
-            'fields': ('note',)
+        ('Statut', {
+            'fields': ('est_publie',)
         }),
     )
-    readonly_fields = ('id_annonce', 'date_creation', 'date_modification')
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ['annonce', 'image', 'ordre']
-    list_filter = ['annonce__type']
-
-@admin.register(Document)
-class DocumentAdmin(admin.ModelAdmin):
-    list_display = ['nom', 'annonce', 'fichier']
-    list_filter = ['annonce__type']
-    search_fields = ['nom']
+    list_display = ['id', 'projet', 'ordre']
+    list_filter = ['projet']
+    search_fields = ['projet__titre']
 
 @admin.register(Commentaire)
 class CommentaireAdmin(admin.ModelAdmin):
-    list_display = ['auteur', 'annonce', 'note', 'date']
-    list_filter = ['note', 'date']
-    search_fields = ['auteur', 'texte']
+    list_display = ['id', 'auteur', 'projet', 'note', 'date']
+    list_filter = ['projet', 'note', 'date']
+    search_fields = ['auteur', 'texte', 'projet__titre']
 
 @admin.register(DemandeContact)
 class DemandeContactAdmin(admin.ModelAdmin):
-    list_display = ['prenom', 'nom', 'telephone', 'annonce', 'date', 'traite']
-    list_filter = ['traite', 'date']
-    search_fields = ['prenom', 'nom', 'telephone']
-    actions = ['marquer_comme_traite']
-    
-    def marquer_comme_traite(self, request, queryset):
-        queryset.update(traite=True)
-    marquer_comme_traite.short_description = "Marquer les demandes comme traitées"
+    list_display = ['id', 'nom', 'telephone', 'projet', 'date']
+    list_filter = ['date']
+    search_fields = ['nom', 'telephone', 'email', 'message']

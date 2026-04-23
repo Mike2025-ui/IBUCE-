@@ -1,5 +1,6 @@
 /* ============================================================
    IBUCE s.a.r.l – SCRIPT PRINCIPAL
+   Topographie, BTP, Hydraulique, Cartographie, Juridique foncier
    ============================================================ */
 
 let projets = [];
@@ -9,6 +10,7 @@ let galerieIndex = 0;
 let whatsappNumero1 = "2250757090714";
 let whatsappNumero2 = "2250574002019";
 
+// Données statiques des projets (à remplacer par API Django)
 const projetsStatiques = [
     {
         id: "1",
@@ -92,6 +94,10 @@ const projetsStatiques = [
     }
 ];
 
+// ============================================================
+// FONCTIONS UTILITAIRES
+// ============================================================
+
 function getMediaUrl(path) {
     if (!path) return 'https://via.placeholder.com/400x240?text=IBUCE';
     if (path.startsWith('http')) return path;
@@ -114,9 +120,13 @@ function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
 }
 
-function retourProjets() {
-    showPage('projets');
+function retourRealisations() {
+    showPage('realisations');
 }
+
+// ============================================================
+// CHARGEMENT DES PROJETS
+// ============================================================
 
 async function chargerProjets() {
     projets = [...projetsStatiques];
@@ -126,8 +136,23 @@ async function chargerProjets() {
     console.log('✅ IBUCE - Projets chargés');
 }
 
+// ============================================================
+// RENDU DES CARTES RÉALISATIONS
+// ============================================================
+
 function creerCarteRealisation(p) {
     const imgUrl = getMediaUrl(p.image_principale);
+    const categorieFr = {
+        'construction': 'Construction',
+        'topographie': 'Topographie',
+        'amenagement': 'Aménagement',
+        'forage': 'Forage',
+        'second-oeuvre': 'Second Œuvre',
+        'hydraulique': 'Hydraulique',
+        'cartographie': 'Cartographie',
+        'juridique': 'Juridique foncier'
+    }[p.categorie] || 'Réalisation';
+    
     return `
         <div class="realisation-card" onclick="voirDetail('${p.id}')">
             <div class="card-img">
@@ -157,6 +182,10 @@ function renderRealisationsFull() {
     if (!grid) return;
     grid.innerHTML = projets.map(creerCarteRealisation).join('');
 }
+
+// ============================================================
+// PAGE DÉTAIL D'UN PROJET
+// ============================================================
 
 function voirDetail(id) {
     const p = projets.find(x => x.id == id);
@@ -193,7 +222,7 @@ function voirDetail(id) {
             <div class="detail-sidebar-modern">
                 <div class="sidebar-card-modern">
                     <h3><i class="fas fa-hard-hat"></i> IBUCE s.a.r.l</h3>
-                    <p>Expertise en topographie, construction, aménagement, forage, transit et vente d'appareils topographiques. Devis gratuit sur demande.</p>
+                    <p>Expertise en topographie, construction, aménagement, hydraulique, cartographie, juridique foncier, import-export et vente d'appareils topographiques. Devis gratuit sur demande.</p>
                     <a href="https://wa.me/${whatsappNumero1}?text=Bonjour%20IBUCE,%20devis%20pour%20${encodeURIComponent(p.titre)}" 
                        class="btn-primary-full" style="text-decoration:none; margin-top:16px; display:flex;" target="_blank">
                         <i class="fab fa-whatsapp"></i> Demander un devis
@@ -212,11 +241,16 @@ function changerImgDetail(thumbEl, imgSrc, index) {
     galerieIndex = index;
 }
 
+// ============================================================
+// GALERIE MODALE
+// ============================================================
+
 function ouvrirGalerie(id, indexDep) {
     const p = projets.find(x => x.id == id);
     if (!p) return;
     galerieImages = (p.images || [p.image_principale]).map(img => getMediaUrl(img));
     galerieIndex = indexDep;
+    if (galerieImages.length === 0) return;
     document.getElementById('galerieImg').src = galerieImages[galerieIndex];
     document.getElementById('galerieCount').textContent = `${galerieIndex+1}/${galerieImages.length}`;
     document.getElementById('modalGalerie').classList.remove('hidden');
@@ -224,12 +258,14 @@ function ouvrirGalerie(id, indexDep) {
 }
 
 function galeriePrev() {
+    if (galerieImages.length === 0) return;
     galerieIndex = (galerieIndex - 1 + galerieImages.length) % galerieImages.length;
     document.getElementById('galerieImg').src = galerieImages[galerieIndex];
     document.getElementById('galerieCount').textContent = `${galerieIndex+1}/${galerieImages.length}`;
 }
 
 function galerieNext() {
+    if (galerieImages.length === 0) return;
     galerieIndex = (galerieIndex + 1) % galerieImages.length;
     document.getElementById('galerieImg').src = galerieImages[galerieIndex];
     document.getElementById('galerieCount').textContent = `${galerieIndex+1}/${galerieImages.length}`;
@@ -239,6 +275,18 @@ function fermerGalerie() {
     document.getElementById('modalGalerie').classList.add('hidden');
     document.body.style.overflow = '';
 }
+
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('modalGalerie');
+    if (modal.classList.contains('hidden')) return;
+    if (e.key === 'ArrowRight') galerieNext();
+    if (e.key === 'ArrowLeft') galeriePrev();
+    if (e.key === 'Escape') fermerGalerie();
+});
+
+// ============================================================
+// FORMULAIRE CONTACT
+// ============================================================
 
 function envoyerContact(event) {
     event.preventDefault();
@@ -261,6 +309,10 @@ function envoyerContact(event) {
     document.getElementById('contactForm').reset();
     afficherToast('Message préparé ! WhatsApp va s\'ouvrir', 'success');
 }
+
+// ============================================================
+// ADMIN - AJOUTER UN PROJET
+// ============================================================
 
 function ajouterProjet(event) {
     event.preventDefault();
@@ -290,6 +342,10 @@ function ajouterProjet(event) {
     afficherToast('Projet ajouté avec succès', 'success');
 }
 
+// ============================================================
+// ADMIN - LISTE DES PROJETS
+// ============================================================
+
 function renderAdminList() {
     const list = document.getElementById('adminList');
     if (!list) return;
@@ -312,6 +368,10 @@ function renderAdminList() {
         </div>
     `).join('');
 }
+
+// ============================================================
+// ADMIN - MODIFIER UN PROJET
+// ============================================================
 
 function ouvrirEditProjet(id) {
     const p = projets.find(x => x.id == id);
@@ -355,6 +415,10 @@ function soumettreEditProjet(event) {
     }
 }
 
+// ============================================================
+// ADMIN - SUPPRIMER UN PROJET
+// ============================================================
+
 function supprimerProjet(id) {
     if (!confirm('Supprimer définitivement cette réalisation ?')) return;
     const index = projets.findIndex(x => x.id == id);
@@ -367,23 +431,26 @@ function supprimerProjet(id) {
     }
 }
 
+// ============================================================
+// TOAST (NOTIFICATIONS)
+// ============================================================
+
+let toastTimer = null;
+
 function afficherToast(message, type) {
     const toast = document.getElementById('toast');
     toast.textContent = message;
     toast.className = `toast ${type}`;
     toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 3500);
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.add('hidden'), 3500);
 }
+
+// ============================================================
+// INITIALISATION
+// ============================================================
 
 document.addEventListener('DOMContentLoaded', async function() {
     await chargerProjets();
     console.log('✅ IBUCE s.a.r.l - Site chargé avec succès');
-});
-
-document.addEventListener('keydown', function(e) {
-    const modal = document.getElementById('modalGalerie');
-    if (modal.classList.contains('hidden')) return;
-    if (e.key === 'ArrowRight') galerieNext();
-    if (e.key === 'ArrowLeft') galeriePrev();
-    if (e.key === 'Escape') fermerGalerie();
 });

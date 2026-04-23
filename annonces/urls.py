@@ -8,11 +8,12 @@ urlpatterns = [
     path('admin-ibuce-panel/', views.admin_panel, name='admin_panel'),
     path('logout/', views.force_logout, name='logout'),
     
-    # API Annonces
-    path('api/annonces/', views.api_annonces, name='api_annonces'),
-    path('api/annonce/<str:id_annonce>/', views.api_annonce_detail, name='api_annonce_detail'),
-    path('api/annonces/creer/', views.creer_annonce, name='creer_annonce'),
-    path('api/annonces/<str:id_annonce>/supprimer/', views.supprimer_annonce, name='supprimer_annonce'),
-    path('api/annonces/<str:id_annonce>/modifier/', views.modifier_annonce, name='modifier_annonce'),
-    path('api/annonce/<str:id_annonce>/commentaire/', views.ajouter_commentaire, name='ajouter_commentaire'),
+    # API Projets
+    path('api/projets/', views.api_projets, name='api_projets'),
+    path('api/projet/<str:id_projet>/', views.api_projet_detail, name='api_projet_detail'),
+    path('api/projets/creer/', views.creer_projet, name='creer_projet'),
+    path('api/projets/<str:id_projet>/supprimer/', views.supprimer_projet, name='supprimer_projet'),
+    path('api/projets/<str:id_projet>/modifier/', views.modifier_projet, name='modifier_projet'),
+    path('api/projet/<str:id_projet>/commentaire/', views.ajouter_commentaire, name='ajouter_commentaire'),
+    path('api/contact/interesse/', views.contacter_interesse, name='contacter_interesse'),
 ]
