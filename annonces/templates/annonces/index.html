@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IBUCE s.a.r.l – Topographie, BTP, Hydraulique & Juridique</title>
-  <meta name="description" content="IBUCE s.a.r.l – Travaux topographiques, travaux publics, bâtiments, hydraulique, cartographie, juridique foncier, aménagement, formations, vente d'appareils topographiques, import-export, informatique, bathymétrie et travaux miniers en Côte d'Ivoire.">
+  <title>IBUCE s.a.r.l – Topographie, BTP & Grands Œuvres</title>
+  <meta name="description" content="IBUCE s.a.r.l – Travaux de construction, topographie, aménagement, forage, transit, vente d'appareils topographiques et aide aux conflits fonciers en Côte d'Ivoire.">
 
   <!-- Icônes Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,7 +25,7 @@
 <body>
 
 <!-- ============================================================
-     BARRE DE NAVIGATION
+     BARRE DE NAVIGATION (sans bouton Admin)
 ============================================================ -->
 <header id="navbar">
   <div class="nav-container">
@@ -38,9 +38,10 @@
     </div>
     <nav class="nav-links" id="navLinks">
       <a href="#accueil" onclick="showPage('accueil')">Accueil</a>
-      <a href="#activites" onclick="showPage('activites')">Activités</a>
-      <a href="#realisations" onclick="showPage('realisations')">Réalisations</a>
+      <a href="#projets" onclick="showPage('projets')">Réalisations</a>
+      <a href="#services" onclick="showPage('services')">Services</a>
       <a href="#contact" onclick="showPage('contact')">Contact</a>
+      <!-- PAS DE BOUTON ADMIN -->
     </nav>
     <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
@@ -57,14 +58,14 @@
     <div class="hero-content-modern">
       <div class="hero-badge">Expertise depuis 2016</div>
       <h1>IBUCE s.a.r.l<br><span class="hero-highlight">Bâtisseurs d'infrastructures</span></h1>
-      <p>Topographie, travaux publics, bâtiments, hydraulique, cartographie, juridique foncier, aménagement, formations, vente d'appareils topographiques, import-export, informatique, bathymétrie et travaux miniers en Côte d'Ivoire.</p>
+      <p>Topographie, construction, aménagement, forage, transit, vente d'appareils topographiques et aide aux conflits fonciers en Côte d'Ivoire.</p>
       <div class="hero-buttons">
-        <button class="btn-primary" onclick="showPage('activites')">
-          <i class="fas fa-hard-hat"></i> Nos activités
+        <button class="btn-primary" onclick="showPage('projets')">
+          <i class="fas fa-hard-hat"></i> Nos réalisations
         </button>
-        <a href="https://wa.me/2250757090714" target="_blank" class="btn-whatsapp">
-          <i class="fab fa-whatsapp"></i> Devis gratuit
-        </a>
+        <button class="btn-outline" onclick="showPage('contact')">
+          <i class="fas fa-phone-alt"></i> Demander un devis
+        </button>
       </div>
     </div>
     <div class="hero-stats-modern">
@@ -83,97 +84,48 @@
     </div>
   </section>
 
-  <section class="activites-preview">
+  <section class="services-modern">
     <div class="container">
       <div class="section-header-modern">
-        <span class="section-subtitle">Nos domaines d'expertise</span>
+        <span class="section-subtitle">Notre savoir-faire</span>
         <h2>Des prestations complètes<br>pour vos projets d'envergure</h2>
       </div>
-      <div class="activites-grid">
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-map-marked-alt"></i></div>
-          <h3>Travaux Topographiques</h3>
-          <p>Layonnages, délimitation, bornage, implantation, levés topographiques, parcellaires et lotissements.</p>
-          <div class="activite-tag">Précision millimétrique</div>
+      <div class="services-grid-modern">
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+          <h3>Construction</h3>
+          <p>Plans, études, dossiers de permis de construire & réalisations clé en main.</p>
+          <div class="service-tag">Bâtiment & Travaux publics</div>
         </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-road"></i></div>
-          <h3>Travaux Publics</h3>
-          <p>Projets routiers, terrassements, ouvrages hydrauliques, suivi de chantier.</p>
-          <div class="activite-tag">Infrastructures durables</div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Topographie</h3>
+          <p>Géométrie, cartographie, états des lieux, implantation d'ouvrages, lotissement.</p>
+          <div class="service-tag">Précision millimétrique</div>
         </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-building"></i></div>
-          <h3>Travaux de Bâtiments</h3>
-          <p>Gros œuvre, second œuvre, études, plans 2D/3D, devis quantitatifs.</p>
-          <div class="activite-tag">Clé en main</div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>Second Œuvre</h3>
+          <p>Peinture, staff, carrelage, froid-climatisation, installations sanitaires & électricité.</p>
+          <div class="service-tag">Finition haut de gamme</div>
         </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-water"></i></div>
-          <h3>Travaux Hydrauliques</h3>
-          <p>Forages modernes et villageois, châteaux d'eau, digues agricoles.</p>
-          <div class="activite-tag">Eau potable & irrigation</div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-water"></i></div>
+          <h3>Forage</h3>
+          <p>Études de forages hydro & villageois, château d'eau, adduction d'eau.</p>
+          <div class="service-tag">Eau potable & irrigation</div>
         </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-draw-polygon"></i></div>
-          <h3>Travaux Cartographiques</h3>
-          <p>Levés par drone, SIG, géolocalisation, production de cartes de zonage.</p>
-          <div class="activite-tag">Géomatique avancée</div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-road"></i></div>
+          <h3>Aménagement</h3>
+          <p>Décapages, ouverture de voies, pose de poteaux électriques, lotissements.</p>
+          <div class="service-tag">Infrastructures durables</div>
         </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-gavel"></i></div>
-          <h3>Travaux Juridiques</h3>
-          <p>Sécurisation foncière, ACD, titres fonciers, conflits fonciers, Conseil d'État.</p>
-          <div class="activite-tag">Assistance juridique</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="activites-suite">
-    <div class="container">
-      <div class="activites-grid-2">
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-tractor"></i></div>
-          <h3>Travaux d'Aménagement</h3>
-          <p>Reprofilage, décapage, ouverture de voies, pose de poteaux électriques.</p>
-          <div class="activite-tag">Aménagement terrain</div>
-        </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-chalkboard-user"></i></div>
-          <h3>Formations</h3>
-          <p>Formation sur les outils de Génie civil et Systèmes d'Information Géographique.</p>
-          <div class="activite-tag">Transfert de compétences</div>
-        </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-cart-shopping"></i></div>
-          <h3>Ventes</h3>
-          <p>Terrains nus, appareils topographiques (GPS, drones, stations total), bétonnières.</p>
-          <div class="activite-tag">Matériel & foncier</div>
-        </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-ship"></i></div>
-          <h3>Import-Export</h3>
-          <p>Importation/exportation par bateaux et avions, assistance dédouanement.</p>
-          <div class="activite-tag">Logistique internationale</div>
-        </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-laptop-code"></i></div>
-          <h3>Travaux Informatiques</h3>
-          <p>Création de sites web, progiciels, bases de données, cybersécurité.</p>
-          <div class="activite-tag">Solutions digitales</div>
-        </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-water"></i></div>
-          <h3>Travaux Bathymétriques</h3>
-          <p>Études de fonds marins, auscultation de barrages, détermination d'exutoire.</p>
-          <div class="activite-tag">Hydrologie avancée</div>
-        </div>
-        <div class="activite-card">
-          <div class="activite-icon"><i class="fas fa-hard-hat"></i></div>
-          <h3>Travaux Miniers</h3>
-          <p>Implantation, auscultation, délimitation, calcul de cubatures excavées.</p>
-          <div class="activite-tag">Mines & carrières</div>
+        <div class="service-card-modern">
+          <div class="service-icon"><i class="fas fa-gavel"></i></div>
+          <h3>Conflits fonciers</h3>
+          <p>Aide aux procédures de règlement de conflits fonciers (jusqu'en Conseil d'État).</p>
+          <div class="service-tag">Assistance juridique</div>
         </div>
       </div>
     </div>
@@ -187,9 +139,63 @@
       </div>
       <div class="realisations-grid" id="realisationsGrid"></div>
       <div class="center-btn">
-        <button class="btn-outline" onclick="showPage('realisations')">
+        <button class="btn-outline" onclick="showPage('projets')">
           <i class="fas fa-arrow-right"></i> Voir toutes nos réalisations
         </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <div class="section-header-modern">
+        <span class="section-subtitle">Équipements professionnels</span>
+        <h2>Vente d'appareils topographiques</h2>
+        <p>Matériel de précision pour vos chantiers</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <i class="fas fa-satellite-dish"></i>
+          <h3>GPS Différentiel</h3>
+          <p>Précision centimétrique</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-map"></i>
+          <h3>GPS Portatifs</h3>
+          <p>Navigation et relevés</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-level-up-alt"></i>
+          <h3>Niveaux optiques</h3>
+          <p>Nivellement de précision</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-laptop"></i>
+          <h3>Ordinateurs</h3>
+          <p>Solutions métiers</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-drone"></i>
+          <h3>Drones</h3>
+          <p>Cartographie aérienne</p>
+        </div>
+        <div class="product-card">
+          <i class="fas fa-walkie-talkie"></i>
+          <h3>Talkies-walkies</h3>
+          <p>Communication chantier</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transit-section">
+    <div class="container">
+      <div class="transit-card">
+        <div class="transit-icon"><i class="fas fa-ship"></i></div>
+        <div class="transit-content">
+          <h3>Transit & Logistique</h3>
+          <p>Import & Export de grandes marchandises. IBUCE s.a.r.l vous accompagne dans vos opérations douanières et logistiques internationales.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -199,206 +205,18 @@
       <div class="cta-content">
         <h2>Un projet de construction ou d'aménagement ?</h2>
         <p>Étude de faisabilité gratuite et devis sous 48h</p>
-        <a href="https://wa.me/2250757090714" target="_blank" class="btn-primary-large">
+        <button class="btn-primary-large" onclick="showPage('contact')">
           <i class="fab fa-whatsapp"></i> Contactez notre équipe
-        </a>
+        </button>
       </div>
     </div>
   </section>
 </div>
 
 <!-- ============================================================
-     PAGE : ACTIVITÉS (détaillées)
+     PAGE : PROJETS
 ============================================================ -->
-<div id="page-activites" class="page">
-  <section class="page-hero">
-    <div class="container">
-      <h1>Nos activités</h1>
-      <p>Des prestations complètes pour vos projets</p>
-    </div>
-  </section>
-  <section class="activites-detailed">
-    <div class="container">
-      <div class="activite-detailed">
-        <h2><i class="fas fa-map-marked-alt"></i> Travaux Topographiques</h2>
-        <ul>
-          <li>Layonnages</li>
-          <li>Délimitation des parcelles</li>
-          <li>Etat des lieux</li>
-          <li>Bornages</li>
-          <li>Implantation d'ouvrages</li>
-          <li>Levés topographiques</li>
-          <li>Parcellaires et lotissements</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-road"></i> Travaux Publics</h2>
-        <ul>
-          <li>Mise en place du polygonal</li>
-          <li>Levé d'itinéraire routier</li>
-          <li>Levé de détails du relief routier (TN)</li>
-          <li>Montage du projet routier</li>
-          <li>Implantation des profils en long et travers</li>
-          <li>Implantation des entrées en terre</li>
-          <li>Identification et implantation des ouvrages hydrauliques (caniveaux, bordures, avaloirs, drains, buses)</li>
-          <li>Implantation des ouvrages de franchissements</li>
-          <li>Suivi de terrassements et nivellement</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-building"></i> Travaux de Bâtiments</h2>
-        <h3>Phase Études</h3>
-        <ul>
-          <li>Elaboration de plans 2D et 3D</li>
-          <li>Etudes de faisabilités</li>
-          <li>Devis Quantitatifs et Estimatifs</li>
-          <li>Métré (Déboursé-sec)</li>
-          <li>Etude de stabilités et dimensionnement</li>
-          <li>Elaboration de la vidéo d'inauguration</li>
-        </ul>
-        <h3>Phase Gros-Œuvres</h3>
-        <ul>
-          <li>Mise en exécution du bâtiment</li>
-          <li>Ferraillage des ossatures</li>
-          <li>Coffrage des ouvrages</li>
-          <li>Fosses septiques écologiques</li>
-          <li>Suivi et expertises de mise en œuvre</li>
-        </ul>
-        <h3>Phase Second-Œuvres</h3>
-        <ul>
-          <li>Peinture, staffes</li>
-          <li>Electricité bâtiments</li>
-          <li>Revêtement SOLS et MURS (Carrelage)</li>
-          <li>Assainissements</li>
-          <li>Froid et Climatisation</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-water"></i> Travaux Hydrauliques</h2>
-        <h3>Phase études</h3>
-        <ul>
-          <li>Etudes Hydrogéologiques</li>
-          <li>Etudes topo des bassins versants</li>
-        </ul>
-        <h3>Phase Travaux</h3>
-        <ul>
-          <li>Construction de Digues agricoles et barrage d'irrigation</li>
-          <li>Forage moderne et villageois</li>
-          <li>Châteaux d'eaux</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-draw-polygon"></i> Travaux Cartographiques</h2>
-        <ul>
-          <li>Levés Cartographiques par drone et post-traitement</li>
-          <li>Analyses et géométries spatiales, traitement de données RASTER et VECTEUR en SIG</li>
-          <li>Collecte des données, catégorisation et vectorisation</li>
-          <li>Système de guidage</li>
-          <li>Géolocalisation et géoréférencement</li>
-          <li>Production des cartes de zonages</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-gavel"></i> Travaux Juridiques</h2>
-        <h3>Procédure de sécurisation des terrains nus</h3>
-        <ul>
-          <li>Assistance en demande d'Arrêté de Concession Définitive (ACD)</li>
-          <li>Elaboration de DOSSIERS TECHNIQUES AGRICOLES ET URBAINS</li>
-          <li>Assistance aux demandes d'autorisations de lotir, attestations coutumières et ADU</li>
-          <li>Assistance en demande de certificat foncier et titre foncier</li>
-          <li>Assistance en procédure d'Approbation de lotissement, de projections de polygos et de levé de ZAD</li>
-        </ul>
-        <h3>Assistance en procédure de règlement de conflits fonciers</h3>
-        <ul>
-          <li>Récupération de parcelles</li>
-          <li>PV de constats et de familles</li>
-          <li>Signification</li>
-          <li>Compulsoires</li>
-          <li>Assistance en procédures judiciaires jusqu'en Conseil d'État</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-tractor"></i> Travaux d'Aménagement</h2>
-        <ul>
-          <li>Reprofilage lourds et légers</li>
-          <li>Désherbages</li>
-          <li>Décapage de sites</li>
-          <li>Ouverture de voies</li>
-          <li>Pose de poteaux électriques et quantification à l'hectare</li>
-          <li>Etudes et implantation d'itinéraire des Hauts, Moyennes tensions et des pylônes</li>
-          <li>Recherches de réseaux perdus</li>
-          <li>Pose des Pipe-Lines</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-chalkboard-user"></i> Formations</h2>
-        <ul>
-          <li>Organisation de formation sur l'utilisation des outils de Génie-civil</li>
-          <li>Formation SIG</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-cart-shopping"></i> Ventes</h2>
-        <ul>
-          <li>Vente de terrains nus (ACD, Approbation, Titre foncier, CPMF)</li>
-          <li>Vente d'appareils Topographiques (GPS différentiels et portatifs, Station-total, niveaux, drones, bateauboats, talkies-walkies)</li>
-          <li>Vente de bétonnières</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-ship"></i> Import-Export</h2>
-        <ul>
-          <li>Importation et exportation de produits à destination de la CHINE par bateaux et avions</li>
-          <li>Assistance en procédure de dédouanement</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-laptop-code"></i> Travaux Informatiques</h2>
-        <ul>
-          <li>Création de site internet</li>
-          <li>Cyber-sécurité</li>
-          <li>Création de progiciels et de bases de données de gestion</li>
-          <li>Création de progiciel de gestion de carburant et de stocks</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-water"></i> Travaux Bathymétriques</h2>
-        <ul>
-          <li>Etudes de fonds marins et détermination de débits d'écoulement et de profondeurs de rétention</li>
-          <li>Auscultation des digues des barrages</li>
-          <li>Détermination de l'exutoire et du volume d'eaux</li>
-        </ul>
-      </div>
-
-      <div class="activite-detailed">
-        <h2><i class="fas fa-hard-hat"></i> Travaux Miniers</h2>
-        <ul>
-          <li>Implantation des cultes d'évacuation</li>
-          <li>Auscultation des cultes à ciel ouverts</li>
-          <li>Levés de fonds des cultes</li>
-          <li>Délimitation des zones d'explosifs</li>
-          <li>Calcul des cubatures excavées</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ============================================================
-     PAGE : RÉALISATIONS
-============================================================ -->
-<div id="page-realisations" class="page">
+<div id="page-projets" class="page">
   <section class="page-hero">
     <div class="container">
       <h1>Nos réalisations</h1>
@@ -413,15 +231,159 @@
 </div>
 
 <!-- ============================================================
-     PAGE : DÉTAIL RÉALISATION
+     PAGE : DÉTAIL PROJET
 ============================================================ -->
 <div id="page-detail" class="page">
   <section class="detail-hero">
     <div class="container">
-      <button class="btn-retour-modern" onclick="retourRealisations()">
+      <button class="btn-retour-modern" onclick="retourProjets()">
         <i class="fas fa-arrow-left"></i> Retour aux réalisations
       </button>
       <div id="detailContent"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     PAGE : SERVICES
+============================================================ -->
+<div id="page-services" class="page">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Nos services</h1>
+      <p>Des prestations complètes de la topographie à la livraison des clés</p>
+    </div>
+  </section>
+  <section class="services-detailed">
+    <div class="container">
+      <div class="services-detailed-grid">
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-drafting-compass"></i></div>
+          <h3>Travaux de Construction</h3>
+          <p>Plans, études, dossiers de permis de construire & réalisations clé en main.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Plans architecturaux</li>
+            <li><i class="fas fa-check-circle"></i> Études techniques</li>
+            <li><i class="fas fa-check-circle"></i> Dossiers de permis de construire</li>
+            <li><i class="fas fa-check-circle"></i> Réalisations complètes</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Travaux Topographiques</h3>
+          <p>Géométrie, cartographie, états des lieux, implantation d'ouvrages, lotissement et ventes de terrains nus.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Relevés de précision</li>
+            <li><i class="fas fa-check-circle"></i> Bornage et implantation</li>
+            <li><i class="fas fa-check-circle"></i> Lotissement</li>
+            <li><i class="fas fa-check-circle"></i> Vente de terrains nus</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>Travaux de Second Œuvre</h3>
+          <p>Peinture, staff, carrelage, froid-climatisation, installations sanitaires & électricité.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Peinture décorative</li>
+            <li><i class="fas fa-check-circle"></i> Staff & plâtre</li>
+            <li><i class="fas fa-check-circle"></i> Carrelage & faïence</li>
+            <li><i class="fas fa-check-circle"></i> Climatisation & froid</li>
+            <li><i class="fas fa-check-circle"></i> Électricité & plomberie</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-water"></i></div>
+          <h3>Études de Forages</h3>
+          <p>Forages hydro & villageois, château d'eau, adduction d'eau potable.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Études hydrogéologiques</li>
+            <li><i class="fas fa-check-circle"></i> Forages villageois</li>
+            <li><i class="fas fa-check-circle"></i> Château d'eau</li>
+            <li><i class="fas fa-check-circle"></i> Adduction d'eau</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-road"></i></div>
+          <h3>Travaux d'Aménagement</h3>
+          <p>Décapages, ouverture de voies, pose de poteaux électriques et applications de lotissements.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Décapage & terrassement</li>
+            <li><i class="fas fa-check-circle"></i> Ouverture de voies</li>
+            <li><i class="fas fa-check-circle"></i> Électrification rurale</li>
+            <li><i class="fas fa-check-circle"></i> Aménagement de lotissements</li>
+          </ul>
+        </div>
+        <div class="service-detailed">
+          <div class="service-detailed-icon"><i class="fas fa-file-signature"></i></div>
+          <h3>Aide aux Procédures</h3>
+          <p>Obtention d'approbation de lotissement, levé de Z.A.D et règlement de conflits fonciers (jusqu'en Conseil d'État).</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Approbation de lotissement</li>
+            <li><i class="fas fa-check-circle"></i> Levé de Z.A.D</li>
+            <li><i class="fas fa-check-circle"></i> Conflits fonciers</li>
+            <li><i class="fas fa-check-circle"></i> Conseil d'État</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-detailed">
+    <div class="container">
+      <div class="section-header-modern">
+        <span class="section-subtitle">Matériel professionnel</span>
+        <h2>Vente d'appareils topographiques</h2>
+      </div>
+      <div class="products-detailed-grid">
+        <div class="product-detailed-card">
+          <i class="fas fa-satellite-dish"></i>
+          <h3>GPS Différentiel</h3>
+          <p>Précision centimétrique</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-map"></i>
+          <h3>GPS Portatifs</h3>
+          <p>Solutions mobiles</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-level-up-alt"></i>
+          <h3>Niveaux optiques</h3>
+          <p>Nivellement de précision</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-laptop"></i>
+          <h3>Ordinateurs</h3>
+          <p>Solutions métiers</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-drone"></i>
+          <h3>Drones</h3>
+          <p>Cartographie aérienne</p>
+        </div>
+        <div class="product-detailed-card">
+          <i class="fas fa-walkie-talkie"></i>
+          <h3>Talkies-walkies</h3>
+          <p>Communication chantier</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transit-detailed">
+    <div class="container">
+      <div class="transit-detailed-card">
+        <div class="transit-icon-large"><i class="fas fa-ship"></i></div>
+        <div class="transit-content-detailed">
+          <h3>Transit & Logistique internationale</h3>
+          <p>IBUCE s.a.r.l assure l'import et l'export de grandes marchandises. Nous vous accompagnons dans toutes vos opérations douanières et logistiques.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Import/Export de marchandises</li>
+            <li><i class="fas fa-check-circle"></i> Dédouanement</li>
+            <li><i class="fas fa-check-circle"></i> Logistique internationale</li>
+            <li><i class="fas fa-check-circle"></i> Transport de matériel BTP</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -443,14 +405,8 @@
           <h3><i class="fas fa-building"></i> IBUCE s.a.r.l</h3>
           <p>International Buildings Construct Enterprise</p>
           
-          <h3><i class="fas fa-user"></i> Associée</h3>
-          <p>Mme KONAN Affoué Carolle</p>
-          
-          <h3><i class="fas fa-map-marker-alt"></i> Siège Social</h3>
-          <p>Yamoussoukro / Quartier Morofé, Côte d'Ivoire</p>
-          
-          <h3><i class="fas fa-envelope"></i> Adresse</h3>
-          <p>Yamoussoukro, Côte d'Ivoire</p>
+          <h3><i class="fas fa-map-marker-alt"></i> Adresse</h3>
+          <p>Abidjan, Côte d'Ivoire</p>
           
           <h3><i class="fas fa-phone-alt"></i> Téléphones</h3>
           <p><i class="fas fa-phone"></i> +225 07 57 09 07 14</p>
@@ -501,7 +457,7 @@
 </div>
 
 <!-- ============================================================
-     PAGE : ADMIN
+     PAGE : ADMIN (accessible uniquement via URL secrète)
 ============================================================ -->
 <div id="page-admin" class="page">
   <section class="page-hero">
@@ -537,9 +493,6 @@
               <option value="amenagement">Aménagement</option>
               <option value="forage">Forage</option>
               <option value="second-oeuvre">Second Œuvre</option>
-              <option value="hydraulique">Hydraulique</option>
-              <option value="cartographie">Cartographie</option>
-              <option value="juridique">Juridique foncier</option>
             </select>
           </div>
         </div>
@@ -614,9 +567,6 @@
           <option value="amenagement">Aménagement</option>
           <option value="forage">Forage</option>
           <option value="second-oeuvre">Second Œuvre</option>
-          <option value="hydraulique">Hydraulique</option>
-          <option value="cartographie">Cartographie</option>
-          <option value="juridique">Juridique foncier</option>
         </select>
       </div>
       <div class="form-group-modern">
@@ -633,7 +583,7 @@
 </div>
 
 <!-- ============================================================
-     FOOTER
+     FOOTER (CORRIGÉ)
 ============================================================ -->
 <footer class="footer-modern">
   <div class="container">
@@ -643,56 +593,52 @@
           <img src="{% static 'annonces/images/logoibuce.jpg' %}" alt="Logo" style="height: 50px;">
           <span>IBUCE s.a.r.l</span>
         </div>
-        <p>International Buildings Construct Enterprise - Topographie, BTP, Hydraulique, Cartographie, Juridique foncier et Grands Œuvres en Côte d'Ivoire.</p>
+        <p>International Buildings Construct Enterprise - Topographie, BTP, Forage, Transit et Grands Œuvres en Côte d'Ivoire.</p>
+        <p><strong>Associée :</strong> Mme KONAN Affoué Carolle<br>
+        <strong>Capital :</strong> 1.000.000 FCFA</p>
         <div class="social-links-modern">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://wa.me/2250757090714" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://wa.me/2250757090714"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="#" onclick="showPage('accueil')">Accueil</a></li>
-          <li><a href="#" onclick="showPage('activites')">Activités</a></li>
-          <li><a href="#" onclick="showPage('realisations')">Réalisations</a></li>
+          <li><a href="#" onclick="showPage('projets')">Réalisations</a></li>
+          <li><a href="#" onclick="showPage('services')">Services</a></li>
           <li><a href="#" onclick="showPage('contact')">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Nos Services</h4>
         <ul>
+          <li>Construction</li>
           <li>Topographie</li>
-          <li>Travaux Publics</li>
-          <li>Bâtiment</li>
-          <li>Hydraulique</li>
-          <li>Cartographie</li>
-          <li>Juridique foncier</li>
+          <li>Second Œuvre</li>
+          <li>Forage</li>
           <li>Aménagement</li>
-          <li>Import-Export</li>
+          <li>Transit</li>
           <li>Vente de matériel</li>
+          <li>Conflits fonciers</li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Yamoussoukro, quartier Morofé, Côte d'Ivoire</p>
         <p><i class="fas fa-phone"></i> +225 07 57 09 07 14</p>
         <p><i class="fas fa-phone"></i> +225 05 74 00 20 19</p>
         <p><i class="fas fa-envelope"></i> ibuce.ci@gmail.com</p>
-        <p><i class="fas fa-map-marker-alt"></i> Yamoussoukro, Côte d'Ivoire</p>
-        <p><i class="fas fa-building"></i> Quartier Morofé</p>
       </div>
     </div>
     <div class="footer-bottom-modern">
-      <p>© 2026 IBUCE s.a.r.l – Capital : 1.000.000 FCFA – Tous droits réservés</p>
-      <p>Associée : Mme KONAN Affoué Carolle</p>
+      <p>© 2026 IBUCE s.a.r.l – Tous droits réservés | Travaux de construction, topographie, forage, transit, vente d'appareils topographiques</p>
     </div>
   </div>
 </footer>
 
 <div id="toast" class="toast hidden"></div>
-
-<!-- Zone clic cachée pour accéder à l'admin -->
-<div class="admin-secret-zone" onclick="window.location.href='/IbucClaude-admin-access/'"></div>
 
 <script src="{% static 'annonces/js/script.js' %}"></script>
 </body>
